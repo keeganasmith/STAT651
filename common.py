@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+import scipy.stats as stats
+
 def split_by(df, col):
     unique_col_values = df[col].unique()
     df_dict = {}
@@ -50,6 +52,13 @@ def histogram(df, col):
 def compute_z_score(value, mean, std):
     return (value - mean) / std
 
+def confidence_interval_z(mean, n, std, confidence=0.95):
+    z_critical = stats.norm.ppf((1 + confidence) / 2)
+    margin_of_error = z_critical * (std / np.sqrt(n))
+
+    lower = mean - margin_of_error
+    upper = mean + margin_of_error
+    return lower, upper
 #P(x <= z_score)
 def cdf(z_score):
     cdf = norm.cdf(z_score)
