@@ -59,6 +59,9 @@ def confidence_interval_z(mean, n, std, confidence=0.95):
     lower = mean - margin_of_error
     upper = mean + margin_of_error
     return lower, upper
+
+def confidence_interval_t(mean, n, std, confidence=.95):
+    t_critical = stats.norm.ppf()
 #P(x <= z_score)
 def cdf(z_score):
     cdf = norm.cdf(z_score)
@@ -72,7 +75,7 @@ def compute_standard_error(sigma, n):
 #zα/2 is defined as the number for N(0, 1) such that
 #P(Z > zα/2) = α/2. This value is used for two-sided testing.
 def solve_for_z_half(alpha):
-    probability = alpha / 2
+    probability = 1 - alpha / 2
     z_half = inverse_cdf(probability)
     return z_half
 
