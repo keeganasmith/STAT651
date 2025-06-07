@@ -79,6 +79,9 @@ def solve_for_z_half(alpha):
     z_half = inverse_cdf(probability)
     return z_half
 
+def solve_for_t_half(alpha):
+    
+
 def compute_required_sample_size(alpha, sigma, error):
     z_a_half = solve_for_z_half(alpha)
     return (z_a_half * sigma / error)**2
